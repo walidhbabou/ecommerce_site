@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Liste des Marques</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h2>Liste des Marques</h2>
+        
+        <a th:href="@{/marques/new}" class="btn btn-primary mb-3">Nouvelle Marque</a>
+        
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="marque : ${marques}">
+                    <td th:text="${marque.id}"></td>
+                    <td th:text="${marque.nom}"></td>
+                    <td>
+                        <a th:href="@{/marques/edit/{id}(id=${marque.id})}" class="btn btn-warning btn-sm">Modifier</a>
+                        <a th:href="@{/marques/delete/{id}(id=${marque.id})}" class="btn btn-danger btn-sm" 
+                           onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette marque ?')">Supprimer</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html> 
